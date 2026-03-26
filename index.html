@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5K in 20 Minutes — 36-Day Plan</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --card: #1a1a25;
+      --border: #2a2a3d;
+      --accent: #ff4d4d;
+      --accent2: #ff8c42;
+      --green: #2ecc71;
+      --blue: #4a90e2;
+      --purple: #9b59b6;
+      --text: #e8e8f0;
+      --muted: #7a7a9a;
+      --gold: #f0c040;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a0a0a 0%, var(--bg) 70%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(255,77,77,0.03) 60px,
+        rgba(255,77,77,0.03) 61px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(255,77,77,0.03) 60px,
+        rgba(255,77,77,0.03) 61px
+      );
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,77,77,0.15);
+      color: var(--accent);
+      border: 1px solid rgba(255,77,77,0.3);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero h1 span.highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 40px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .hero-stat .val span { color: var(--accent); }
+    .hero-stat .lbl {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 60px 0; }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .progress-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 100px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── PHASES ── */
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .phase-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .phase-card.p1::before { background: var(--blue); }
+    .phase-card.p2::before { background: var(--purple); }
+    .phase-card.p3::before { background: var(--accent2); }
+    .phase-card.p4::before { background: var(--accent); }
+    .phase-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .phase-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .phase-days {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .phase-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── CALENDAR GRID ── */
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .day-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 14px;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .day-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,77,77,0.4);
+      box-shadow: 0 8px 24px rgba(255,77,77,0.1);
+    }
+    .day-card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+    .day-card.trial { border-color: var(--accent); }
+    .day-card.trial::after {
+      content: '★';
+      position: absolute;
+      top: 10px; right: 10px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+    .day-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .day-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .type-easy    { background: rgba(46,204,113,0.15); color: var(--green); }
+    .type-hard    { background: rgba(255,77,77,0.15);  color: var(--accent); }
+    .type-vo2     { background: rgba(155,89,182,0.15); color: var(--purple); }
+    .type-lsd     { background: rgba(74,144,226,0.15); color: var(--blue); }
+    .type-rest    { background: rgba(122,122,154,0.15); color: var(--muted); }
+    .type-trial   { background: rgba(240,192,64,0.15); color: var(--gold); }
+    .day-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .day-detail {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      animation: modalIn 0.2s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--border);
+      border: none;
+      color: var(--muted);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: var(--accent); color: #fff; }
+    .modal-day { font-size: 0.75rem; color: var(--muted); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .modal-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .modal-badge { margin-bottom: 20px; }
+    .modal-section { margin-bottom: 20px; }
+    .modal-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .modal-steps { list-style: none; }
+    .modal-steps li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      display: flex;
+      gap: 12px;
+    }
+    .modal-steps li:last-child { border-bottom: none; }
+    .step-num { color: var(--accent); font-weight: 700; min-width: 20px; }
+    .modal-targets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .target-box {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .target-val { font-size: 1.1rem; font-weight: 800; }
+    .target-lbl { font-size: 0.7rem; color: var(--muted); }
+
+    /* ── ZONES TABLE ── */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .zone-table {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .zone-table-header {
+      background: var(--surface);
+      padding: 16px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .zone-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .zone-row:last-child { border-bottom: none; }
+    .zone-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .zone-name { display: flex; align-items: center; font-weight: 600; }
+    .zone-val { color: var(--muted); font-size: 0.8rem; align-self: center; }
+
+    /* ── TIPS ── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .tip-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .tip-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .tip-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+    .tip-body { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer span { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 16px 40px; }
+      .hero-stats { gap: 24px; }
+      .calendar { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">36-Day Training Plan</div>
+  <h1>5K in <span class="highlight">20 Minutes</span></h1>
+  <p class="hero-sub">
+    A structured, data-driven 4-cycle program built around Norwegian sub-threshold
+    training, VO₂max intervals, and progressive overload.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="val">36</div>
+      <div class="lbl">Days</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val"><span>4:00</span>/km</div>
+      <div class="lbl">Goal Pace</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val"><span>20:00</span></div>
+      <div class="lbl">Target 5K</div>
+    </div>
+    <div class="hero-stat">
+      <div class="val">4 <span>×</span> 9</div>
+      <div class="lbl">Day Cycles</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="container">
+    <div class="progress-label">
+      <span>Day 1 — Start</span>
+      <span id="progress-pct">0%</span>
+      <span>Day 36 — 5K Race</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASES -->
+<section>
+  <div class="container">
+    <div class="section-title">Training Phases</div>
+    <div class="phases">
+      <div class="phase-card p1">
+        <div class="phase-num">Cycle 1 · D1–D9</div>
+        <div class="phase-name">Calibration I</div>
+        <div class="phase-days">Apr 1 – Apr 9</div>
+        <div class="phase-desc">Injury re-entry. Sub-threshold at controlled HR. Confirm Achilles resilience under real load.</div>
+      </div>
+      <div class="phase-card p2">
+        <div class="phase-num">Cycle 2 · D10–D18</div>
+        <div class="phase-name">Calibration II</div>
+        <div class="phase-days">Apr 10 – Apr 18</div>
+        <div class="phase-desc">Return to full intensity. Yasso 800s, then a 5K time trial to set formal pace zones.</div>
+      </div>
+      <div class="phase-card p3">
+        <div class="phase-num">Cycle 3 · D19–D27</div>
+        <div class="phase-name">Base I</div>
+        <div class="phase-days">Apr 19 – Apr 27</div>
+        <div class="phase-desc">Anchored to verified zones from trial. Volume and quality increase together.</div>
+      </div>
+      <div class="phase-card p4">
+        <div class="phase-num">Cycle 4 · D28–D36</div>
+        <div class="phase-name">Base II</div>
+        <div class="phase-days">Apr 28 – May 6</div>
+        <div class="phase-desc">Higher threshold volume and sharper interval paces. Foundation complete.</div>
+      </div>
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="section-title">All 36 Days</div>
+    <div class="calendar" id="calendar"></div>
+  </div>
+</section>
+
+<!-- REFERENCE ZONES -->
+<section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-title">Reference Zones</div>
+    <div class="zones-grid">
+      <div class="zone-table">
+        <div class="zone-table-header">Heart Rate Zones</div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#7a7a9a"></span>Z1</div>
+          <div class="zone-val">124–137 bpm</div>
+          <div class="zone-val">Recovery</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#2ecc71"></span>Z2</div>
+          <div class="zone-val">138–151 bpm</div>
+          <div class="zone-val">Easy / LSD</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#4a90e2"></span>Z3</div>
+          <div class="zone-val">152–165 bpm</div>
+          <div class="zone-val">Marathon pace</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#ff8c42"></span>Z4</div>
+          <div class="zone-val">166–179 bpm</div>
+          <div class="zone-val">Lactate threshold</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#ff4d4d"></span>Z5</div>
+          <div class="zone-val">180–193 bpm</div>
+          <div class="zone-val">VO₂Max</div>
+        </div>
+      </div>
+      <div class="zone-table">
+        <div class="zone-table-header">Pace Zones</div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#2ecc71"></span>E</div>
+          <div class="zone-val">6:00–6:20/km</div>
+          <div class="zone-val">Easy run</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#4a90e2"></span>M</div>
+          <div class="zone-val">5:10–5:30/km</div>
+          <div class="zone-val">Marathon</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#ff8c42"></span>T</div>
+          <div class="zone-val">4:50–5:10/km</div>
+          <div class="zone-val">Tempo</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#9b59b6"></span>I</div>
+          <div class="zone-val">4:30–4:50/km</div>
+          <div class="zone-val">Interval</div>
+        </div>
+        <div class="zone-row">
+          <div class="zone-name"><span class="zone-dot" style="background:#ff4d4d"></span>R</div>
+          <div class="zone-val">4:00–4:30/km</div>
+          <div class="zone-val">Repetition</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section>
+  <div class="container">
+    <div class="section-title">Key Principles</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🇳🇴</div>
+        <div class="tip-title">Norwegian Sub-Threshold</div>
+        <div class="tip-body">Core of the plan. 1000m reps at P4:40–4:55 with 60s rest. HR should sit just below LT2. If HR climbs above 173, slow down — aerobic adaptation is the goal.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📉</div>
+        <div class="tip-title">HR as Ground Truth</div>
+        <div class="tip-body">Pace targets are estimates. Trust your HR zones over pace. Fitness improvement shows as lower HR at the same pace — not faster times in training.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔁</div>
+        <div class="tip-title">9-Day Cycle Logic</div>
+        <div class="tip-body">Two quality sessions per cycle, separated by easy days. This spacing allows real recovery between hard efforts and prevents the cumulative fatigue that derails 7-day plans.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🦶</div>
+        <div class="tip-title">Injury Protocol</div>
+        <div class="tip-body">If Achilles or plantar fascia flares: drop to easy Z2 only, no speed work until 48h symptom-free. Proximal Achilles is lower-risk but still demands respect.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⚡</div>
+        <div class="tip-title">Time Trial (D18)</div>
+        <div class="tip-body">Not just a test — it's the calibration event that sets all formal pace zones. Go out controlled (km 1 at 4:28–4:32), then let HR guide the middle km, empty the tank in km 5.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💪</div>
+        <div class="tip-title">Strength Training</div>
+        <div class="tip-body">2× per week. Lower body (squat, RDL, farmer carry) away from hard run days. Upper body can pair with easy runs. Goal is injury prevention, not muscle gain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Built for a <span>sub-20:00 5K</span> · 36 days · 4 × 9-day cycles · Norwegian training methodology
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-day" id="mDay"></div>
+    <div class="modal-title" id="mTitle"></div>
+    <div class="modal-badge" id="mBadge"></div>
+    <div class="modal-section" id="mStepsSection">
+      <div class="modal-label">Session Breakdown</div>
+      <ul class="modal-steps" id="mSteps"></ul>
+    </div>
+    <div class="modal-section" id="mTargetsSection">
+      <div class="modal-label">Targets</div>
+      <div class="modal-targets" id="mTargets"></div>
+    </div>
+    <div id="mNote" style="font-size:0.82rem; color: var(--muted);"></div>
+  </div>
+</div>
+
+<script>
+const DAYS = [
+  // CYCLE 1 — Calibration I
+  {
+    d:1, cycle:1, date:'Apr 1', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['2k easy warm-up jog','40–50 min continuous at Z2 (HR 138–151)','Post-run: assess Achilles & plantar fascia'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR (bpm)'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'First day back. Priority is Achilles assessment, not pace. Abort if pain above 3/10.'
+  },
+  {
+    d:2, cycle:1, date:'Apr 2', type:'hard', label:'Threshold',
+    title:'Norwegian Single ×6',
+    detail:'(1000m @ P4:45–4:55 + r60s) ×6',
+    steps:['2k easy warm-up','6 × 1000m @ P4:45–4:55','60 sec standing rest between reps','2k cool-down jog'],
+    targets:[{val:'4:45–4:55/km',lbl:'Rep Pace'},{val:'≤173',lbl:'Peak HR'},{val:'6 reps',lbl:'Volume'},{val:'60 sec',lbl:'Rest'}],
+    note:'If HR exceeds 173 in rep 3+, slow 5–10 sec/km. HR control is the session goal.'
+  },
+  {
+    d:3, cycle:1, date:'Apr 3', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'30–40 min Z1 or rest',
+    steps:['Option A: 30–40 min easy jog at Z1 (HR ≤137)','Option B: Complete rest + mobility work','Light calf + Achilles stretching'],
+    targets:[{val:'≤137',lbl:'Max HR'},{val:'30–40 min',lbl:'Duration'},{val:'Z1',lbl:'Zone'},{val:'Low',lbl:'Intensity'}],
+    note:'Do not push. This session exists to flush legs, not build fitness.'
+  },
+  {
+    d:4, cycle:1, date:'Apr 4', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2 (HR 138–151)','Keep pace honest — no drifting into Z3'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR (bpm)'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'Aerobic volume day. If legs feel good, extend to 55 min.'
+  },
+  {
+    d:5, cycle:1, date:'Apr 5', type:'vo2', label:'VO₂Max',
+    title:'Short Intervals — 400m ×8',
+    detail:'400m @ P4:15–4:25 · r90s',
+    steps:['2k easy warm-up','8 × 400m @ P4:15–4:25','90 sec standing/walking rest','2k cool-down jog'],
+    targets:[{val:'4:15–4:25/km',lbl:'Rep Pace'},{val:'175–185',lbl:'HR (bpm)'},{val:'8 reps',lbl:'Volume'},{val:'90 sec',lbl:'Rest'}],
+    note:'Short and sharp. HR will spike — that is expected. Focus on consistent splits.'
+  },
+  {
+    d:6, cycle:1, date:'Apr 6', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'Rest or 30 min Z1',
+    steps:['Full rest recommended','If restless: 30 min walk or easy swim','Foam roll quads and calves'],
+    targets:[{val:'—',lbl:'Pace'},{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:7, cycle:1, date:'Apr 7', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2','Check how legs feel ahead of LSD tomorrow'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR (bpm)'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'Pre-LSD primer. Keep it easy. No strides.'
+  },
+  {
+    d:8, cycle:1, date:'Apr 8', type:'lsd', label:'LSD',
+    title:'Long Slow Distance — 12k',
+    detail:'12k · Z2 · HR ≤155',
+    steps:['12k at comfortable Z2 pace','HR ceiling: 155 bpm — walk if over','Hydrate every 4–5k'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'≤155',lbl:'HR ceiling'},{val:'12 km',lbl:'Distance'},{val:'Z2',lbl:'Zone'}],
+    note:'Aerobic base builder. Do not race this. Finish feeling like you could do 4 more km.'
+  },
+  {
+    d:9, cycle:1, date:'Apr 9', type:'rest', label:'Recovery',
+    title:'Recovery Day',
+    detail:'Rest or very easy 20 min',
+    steps:['Full rest strongly recommended','Optional: 20 min easy walk','Nutrition: carb refuel, protein for recovery'],
+    targets:[{val:'—',lbl:'Pace'},{val:'Rest',lbl:'Type'},{val:'—',lbl:'Distance'},{val:'Low',lbl:'Intensity'}],
+    note:'End of Cycle 1. Review Achilles response before committing to Cycle 2 intensity.'
+  },
+
+  // CYCLE 2 — Calibration II
+  {
+    d:10, cycle:2, date:'Apr 10', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2','Focus on relaxed form and breathing rhythm'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR (bpm)'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'Opening Cycle 2. Intensity increases this week. Stay conservative today.'
+  },
+  {
+    d:11, cycle:2, date:'Apr 11', type:'hard', label:'Threshold',
+    title:'Norwegian Single ×8',
+    detail:'(1000m @ P4:40–4:50 + r60s) ×8',
+    steps:['2k easy warm-up','8 × 1000m @ P4:40–4:50','60 sec standing rest between reps','2k cool-down jog'],
+    targets:[{val:'4:40–4:50/km',lbl:'Rep Pace'},{val:'≤173',lbl:'Peak HR'},{val:'8 reps',lbl:'Volume'},{val:'60 sec',lbl:'Rest'}],
+    note:'Full Norwegian volume. Target HR at 166 bpm (same as March training). If holding 166 at P4:40, fitness is confirmed.'
+  },
+  {
+    d:12, cycle:2, date:'Apr 12', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'30–40 min Z1 or rest',
+    steps:['30–40 min Z1 jog or complete rest','Mobility: hip flexors, calves, Achilles'],
+    targets:[{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Z1',lbl:'Zone'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:13, cycle:2, date:'Apr 13', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2','Shakeout run — keep it honest and slow'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR (bpm)'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:14, cycle:2, date:'Apr 14', type:'vo2', label:'VO₂Max',
+    title:'Yasso 800s ×6',
+    detail:'800m @ P4:00–4:10 · r400m jog',
+    steps:['2k easy warm-up','6 × 800m @ P4:00–4:10','400m easy jog recovery between reps','2k cool-down'],
+    targets:[{val:'4:00–4:10/km',lbl:'Rep Pace'},{val:'178–185',lbl:'HR (bpm)'},{val:'6 reps',lbl:'Volume'},{val:'400m jog',lbl:'Rest'}],
+    note:'Yasso predictor: 800m time in min:sec ≈ marathon time in hours:min. At 4:00–4:10 per km = 3:12–3:20 per 800m — signals strong VO₂max capacity.'
+  },
+  {
+    d:15, cycle:2, date:'Apr 15', type:'rest', label:'Recovery',
+    title:'Recovery Z1 — 30 min',
+    detail:'Light jog only · HR ≤137',
+    steps:['30 min very easy Z1 jog','No surges, no tempo','Flush the legs before the trial window'],
+    targets:[{val:'≤137',lbl:'Max HR'},{val:'30 min',lbl:'Duration'},{val:'Z1',lbl:'Zone'},{val:'Easy',lbl:'Effort'}],
+    note:''
+  },
+  {
+    d:16, cycle:2, date:'Apr 16', type:'easy', label:'Easy',
+    title:'Short Easy — 30 min',
+    detail:'30 min Z2 · Preserve legs',
+    steps:['30 min easy Z2 — short, not long','2 × 100m progressive strides at the end','No hard efforts'],
+    targets:[{val:'6:10–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'30 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'Leg-freshening run. The strides prime the neuromuscular system without draining glycogen.'
+  },
+  {
+    d:17, cycle:2, date:'Apr 17', type:'rest', label:'Rest',
+    title:'Complete Rest',
+    detail:'No running · Sleep early',
+    steps:['No running','Light walk if restless (15–20 min only)','Sleep 8+ hours — growth hormone for recovery','Carb load lightly in the evening meal'],
+    targets:[{val:'—',lbl:'Pace'},{val:'Rest',lbl:'Type'},{val:'—',lbl:'Distance'},{val:'Maximum',lbl:'Sleep'}],
+    note:'Race-eve protocol. Lay your kit out. Set your alarm. Trust the training.'
+  },
+  {
+    d:18, cycle:2, date:'Apr 18', type:'trial', label:'Time Trial',
+    title:'5K Time Trial ⭐',
+    detail:'Full effort · Set all pace zones',
+    steps:['1.5–2k easy jog warm-up','2 × 100m progressive strides','5 min rest — standing','5K FULL EFFORT — km-by-km targets below','Record: splits + finish time + peak HR'],
+    targets:[{val:'4:28–4:32',lbl:'km 1 pace'},{val:'4:20–4:28',lbl:'km 2–3 pace'},{val:'4:10–4:20',lbl:'km 4 pace'},{val:'Empty tank',lbl:'km 5'}],
+    note:'This is the calibration event. Every pace zone in Cycles 3–4 depends on this result. Controlled start is critical — do not go out at goal pace in km 1.'
+  },
+
+  // CYCLE 3 — Base I
+  {
+    d:19, cycle:3, date:'Apr 19', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · Post-trial flush',
+    steps:['40–50 min easy Z2','Very easy — legs will be sore after trial','Monitor Achilles response'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:'Day after time trial. Pace zones now locked in from actual data. Use this run to absorb the result.'
+  },
+  {
+    d:20, cycle:3, date:'Apr 20', type:'hard', label:'Threshold',
+    title:'Norwegian Single ×6',
+    detail:'(1000m @ trial-calibrated T-pace + r60s) ×6',
+    steps:['2k easy warm-up','6 × 1000m @ calibrated threshold pace','60 sec rest between reps','2k cool-down'],
+    targets:[{val:'Trial T-pace',lbl:'Rep Pace'},{val:'≤LT2 HR',lbl:'Peak HR'},{val:'6 reps',lbl:'Volume'},{val:'60 sec',lbl:'Rest'}],
+    note:'First session using real calibrated zones. Use trial result to set exact pace. LT2 HR = LTHR from trial.'
+  },
+  {
+    d:21, cycle:3, date:'Apr 21', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'30–40 min Z1 or rest',
+    steps:['30–40 min Z1 jog or complete rest','Mobility focus: hip flexors, calves'],
+    targets:[{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Z1',lbl:'Zone'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:22, cycle:3, date:'Apr 22', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2','Aerobic volume accumulation'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:23, cycle:3, date:'Apr 23', type:'vo2', label:'VO₂Max',
+    title:'Short Intervals — 400m ×8',
+    detail:'400m @ trial R-pace · r90s',
+    steps:['2k easy warm-up','8 × 400m at calibrated R-pace','90 sec standing rest','2k cool-down'],
+    targets:[{val:'Trial R-pace',lbl:'Rep Pace'},{val:'Z4–Z5',lbl:'HR Zone'},{val:'8 reps',lbl:'Volume'},{val:'90 sec',lbl:'Rest'}],
+    note:'VO₂max stimulus. Pace calibrated from trial result now.'
+  },
+  {
+    d:24, cycle:3, date:'Apr 24', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'Rest or 30 min Z1',
+    steps:['Full rest or 30 min easy Z1','No intensity'],
+    targets:[{val:'—',lbl:'Pace'},{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:25, cycle:3, date:'Apr 25', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'40–50 min · HR ≤151',
+    steps:['40–50 min continuous at Z2'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'40–50 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:26, cycle:3, date:'Apr 26', type:'lsd', label:'LSD',
+    title:'Long Slow Distance — 13k',
+    detail:'13k · Z2 · HR ≤155',
+    steps:['13k at comfortable Z2 pace','HR ceiling: 155 bpm','Hydrate every 4–5k','Progressive pace is OK — do not force it'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'≤155',lbl:'HR ceiling'},{val:'13 km',lbl:'Distance'},{val:'Z2',lbl:'Zone'}],
+    note:'1k longer than Cycle 1. Aerobic base expanding.'
+  },
+  {
+    d:27, cycle:3, date:'Apr 27', type:'rest', label:'Recovery',
+    title:'Recovery Day',
+    detail:'Rest · End of Cycle 3',
+    steps:['Full rest','Reflect on Cycle 3 — HR trends, pace feels','Plan any adjustments for Cycle 4'],
+    targets:[{val:'—',lbl:'Pace'},{val:'Rest',lbl:'Type'},{val:'—',lbl:'Distance'},{val:'Low',lbl:'Intensity'}],
+    note:'End of Cycle 3. Three cycles complete.'
+  },
+
+  // CYCLE 4 — Base II
+  {
+    d:28, cycle:4, date:'Apr 28', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'45–55 min · HR ≤151',
+    steps:['45–55 min continuous at Z2','Slightly longer than previous easy runs — volume building'],
+    targets:[{val:'6:00–6:15/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'45–55 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:29, cycle:4, date:'Apr 29', type:'hard', label:'Threshold',
+    title:'Norwegian Single ×8',
+    detail:'(1000m @ T-pace + r60s) ×8 — sharper pace',
+    steps:['2k easy warm-up','8 × 1000m — target 5–10 sec/km faster than D20','60 sec rest between reps','2k cool-down'],
+    targets:[{val:'Trial T-pace −0:05/km',lbl:'Rep Pace'},{val:'≤LT2 HR',lbl:'Peak HR'},{val:'8 reps',lbl:'Volume'},{val:'60 sec',lbl:'Rest'}],
+    note:'If HR stayed well below LT2 in D20, drop pace 5 sec/km. Progress demands slightly harder efforts.'
+  },
+  {
+    d:30, cycle:4, date:'Apr 30', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'30–40 min Z1 or rest',
+    steps:['30–40 min Z1 or complete rest'],
+    targets:[{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Z1',lbl:'Zone'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:31, cycle:4, date:'May 1', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'45–55 min · HR ≤151',
+    steps:['45–55 min continuous at Z2'],
+    targets:[{val:'6:00–6:15/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'45–55 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:32, cycle:4, date:'May 2', type:'vo2', label:'VO₂Max',
+    title:'Yasso 800s ×6 — Sharper',
+    detail:'800m @ R-pace −0:05/km · r400m jog',
+    steps:['2k easy warm-up','6 × 800m — 5 sec/km faster than D14','400m easy jog recovery','2k cool-down'],
+    targets:[{val:'Trial R-pace −0:05/km',lbl:'Rep Pace'},{val:'Z4–Z5',lbl:'HR Zone'},{val:'6 reps',lbl:'Volume'},{val:'400m jog',lbl:'Rest'}],
+    note:'Small progression on Yasso paces. Every rep counts — do not go out too fast on rep 1.'
+  },
+  {
+    d:33, cycle:4, date:'May 3', type:'rest', label:'Recovery',
+    title:'Recovery',
+    detail:'Rest or 30 min Z1',
+    steps:['Full rest or 30 min easy Z1'],
+    targets:[{val:'—',lbl:'Pace'},{val:'≤137',lbl:'Max HR'},{val:'Optional',lbl:'Run'},{val:'Low',lbl:'Intensity'}],
+    note:''
+  },
+  {
+    d:34, cycle:4, date:'May 4', type:'easy', label:'Easy',
+    title:'Easy Run — Z2',
+    detail:'45–55 min · HR ≤151',
+    steps:['45–55 min continuous at Z2'],
+    targets:[{val:'6:00–6:15/km',lbl:'Pace'},{val:'138–151',lbl:'HR'},{val:'45–55 min',lbl:'Duration'},{val:'Z2',lbl:'Zone'}],
+    note:''
+  },
+  {
+    d:35, cycle:4, date:'May 5', type:'lsd', label:'LSD',
+    title:'Long Slow Distance — 14k',
+    detail:'14k · Z2 · HR ≤155',
+    steps:['14k at comfortable Z2 pace','HR ceiling: 155 bpm','Stay conservative — this is base-building, not racing'],
+    targets:[{val:'6:00–6:20/km',lbl:'Pace'},{val:'≤155',lbl:'HR ceiling'},{val:'14 km',lbl:'Distance'},{val:'Z2',lbl:'Zone'}],
+    note:'Longest run of the 36-day block. Strong aerobic base now established.'
+  },
+  {
+    d:36, cycle:4, date:'May 6', type:'rest', label:'Recovery',
+    title:'Recovery — Program Complete',
+    detail:'Full rest · Reflect & plan',
+    steps:['Full rest','Review 36-day HR trend data','Compare D2 HR vs D29 HR at same pace','Plan the next cycle based on progress'],
+    targets:[{val:'—',lbl:'Pace'},{val:'Rest',lbl:'Type'},{val:'—',lbl:'Distance'},{val:'Reflect',lbl:'Focus'}],
+    note:'36 days complete. You have built the aerobic foundation for a sub-20 5K. The next cycle brings the sharpening phase.'
+  },
+];
+
+const typeLabels = {
+  easy:'Easy', hard:'Threshold', vo2:'VO₂Max', lsd:'LSD', rest:'Recovery', trial:'Time Trial'
+};
+const cycleColors = { 1:'#4a90e2', 2:'#9b59b6', 3:'#ff8c42', 4:'#ff4d4d' };
+
+function buildCalendar() {
+  const cal = document.getElementById('calendar');
+  DAYS.forEach(day => {
+    const card = document.createElement('div');
+    card.className = 'day-card' + (day.type === 'trial' ? ' trial' : '');
+    card.innerHTML = `
+      <div class="day-num">Day ${day.d} · ${day.date}</div>
+      <span class="day-type type-${day.type}">${typeLabels[day.type]}</span>
+      <div class="day-title">${day.title}</div>
+      <div class="day-detail">${day.detail}</div>
+    `;
+    card.addEventListener('click', () => openModal(day));
+    cal.appendChild(card);
+  });
+}
+
+function openModal(day) {
+  document.getElementById('mDay').textContent = `Day ${day.d} · ${day.date} · Cycle ${day.cycle}`;
+  document.getElementById('mTitle').textContent = day.title;
+  document.getElementById('mBadge').innerHTML = `<span class="day-type type-${day.type}">${typeLabels[day.type]}</span>`;
+
+  const stepsList = document.getElementById('mSteps');
+  stepsList.innerHTML = day.steps.map((s, i) =>
+    `<li><span class="step-num">${i+1}</span><span>${s}</span></li>`
+  ).join('');
+
+  const targetsEl = document.getElementById('mTargets');
+  targetsEl.innerHTML = day.targets.map(t =>
+    `<div class="target-box"><div class="target-val">${t.val}</div><div class="target-lbl">${t.lbl}</div></div>`
+  ).join('');
+
+  document.getElementById('mNote').textContent = day.note;
+
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+document.getElementById('modalClose').addEventListener('click', () => {
+  document.getElementById('modalOverlay').classList.remove('open');
+});
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+});
+
+// Animate progress bar on load
+buildCalendar();
+requestAnimationFrame(() => {
+  setTimeout(() => {
+    const fill = document.getElementById('progressFill');
+    const pct = document.getElementById('progress-pct');
+    fill.style.width = '0%';
+    pct.textContent = '0%';
+    // Demo: show day 1 as current start
+    // Update this value to reflect actual current day
+    const currentDay = 1;
+    const progress = Math.round((currentDay / 36) * 100);
+    setTimeout(() => {
+      fill.style.width = progress + '%';
+      pct.textContent = progress + '%';
+    }, 100);
+  }, 100);
+});
+</script>
+</body>
+</html>
