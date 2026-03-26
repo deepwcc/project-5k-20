@@ -379,6 +379,76 @@
     .zone-name { display: flex; align-items: center; font-weight: 600; }
     .zone-val { color: var(--muted); font-size: 0.8rem; align-self: center; }
 
+    .zone-matrix {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .zone-matrix table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .zone-matrix th,
+    .zone-matrix td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+      vertical-align: middle;
+    }
+    .zone-matrix tr:last-child th,
+    .zone-matrix tr:last-child td { border-bottom: none; }
+    .zone-matrix th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      background: var(--surface);
+      width: 140px;
+    }
+    .zone-matrix .zhead {
+      background: var(--surface);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: none;
+      font-size: 0.86rem;
+    }
+    .zone-matrix .zsub {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
+    .zone-matrix .muted { color: var(--muted); }
+    .zone-matrix .marker {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .zone-matrix .marker-row td {
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(255,255,255,0.02) 100%);
+      position: relative;
+      height: 38px;
+    }
+    .zone-matrix td.posrel { position: relative; }
+    .zone-matrix .marker-between {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .zone-matrix td.posrel { text-align: center; }
+
     /* ── TIPS ── */
     .tips-grid {
       display: grid;
@@ -498,63 +568,65 @@
 <section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="container">
     <div class="section-title">Reference Zones</div>
-    <div class="zones-grid">
-      <div class="zone-table">
-        <div class="zone-table-header">Heart Rate Zones</div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#7a7a9a"></span>Z1</div>
-          <div class="zone-val">124–137 bpm</div>
-          <div class="zone-val">Recovery</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#2ecc71"></span>Z2</div>
-          <div class="zone-val">138–151 bpm</div>
-          <div class="zone-val">Easy / LSD</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#4a90e2"></span>Z3</div>
-          <div class="zone-val">152–165 bpm</div>
-          <div class="zone-val">Marathon pace</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#ff8c42"></span>Z4</div>
-          <div class="zone-val">166–179 bpm</div>
-          <div class="zone-val">Lactate threshold</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#ff4d4d"></span>Z5</div>
-          <div class="zone-val">180–193 bpm</div>
-          <div class="zone-val">VO₂Max</div>
-        </div>
-      </div>
-      <div class="zone-table">
-        <div class="zone-table-header">Pace Zones</div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#2ecc71"></span>E</div>
-          <div class="zone-val">6:00–6:20/km</div>
-          <div class="zone-val">Easy run</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#4a90e2"></span>M</div>
-          <div class="zone-val">5:10–5:30/km</div>
-          <div class="zone-val">Marathon</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#ff8c42"></span>T</div>
-          <div class="zone-val">4:50–5:10/km</div>
-          <div class="zone-val">Tempo</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#9b59b6"></span>I</div>
-          <div class="zone-val">4:30–4:50/km</div>
-          <div class="zone-val">Interval</div>
-        </div>
-        <div class="zone-row">
-          <div class="zone-name"><span class="zone-dot" style="background:#ff4d4d"></span>R</div>
-          <div class="zone-val">4:00–4:30/km</div>
-          <div class="zone-val">Repetition</div>
-        </div>
-      </div>
+    <div class="zone-matrix">
+      <table>
+        <tr>
+          <th></th>
+          <td class="zhead" style="background:#7a7a9a">Z1</td>
+          <td class="zhead" style="background:#2ecc71">Z2</td>
+          <td class="zhead" style="background:#4a90e2">Z3</td>
+          <td class="zhead" style="background:#ff8c42">Z4</td>
+          <td class="zhead" style="background:#9b59b6">Z5</td>
+        </tr>
+        <tr class="marker-row">
+          <th>Markers</th>
+          <td class="marker"><span class="marker-between">60% max HR</span></td>
+          <td class="marker"><span class="marker-between">LT1</span></td>
+          <td class="marker"><span class="marker-between">LT2</span></td>
+          <td class="marker"><span class="marker-between">VO₂Max</span></td>
+          <td class="marker muted"></td>
+        </tr>
+        <tr>
+          <th>Session</th>
+          <td class="zsub">Recovery run</td>
+          <td class="zsub">Easy / LSD</td>
+          <td class="zsub">Norwegian Single<br/>Tempo</td>
+          <td class="zsub">Hills / Yasso 800<br/>Norwegian 4×4</td>
+          <td class="zsub">400m reps</td>
+        </tr>
+        <tr>
+          <th>Heart rate</th>
+          <td>124–137 bpm</td>
+          <td>138–151 bpm</td>
+          <td>152–165 bpm</td>
+          <td>166–179 bpm</td>
+          <td>180–193 bpm</td>
+        </tr>
+        <tr>
+          <th>Pace label</th>
+          <td class="muted">—</td>
+          <td>E</td>
+          <td>M–T</td>
+          <td>I</td>
+          <td>R</td>
+        </tr>
+        <tr>
+          <th>Race proxy</th>
+          <td class="muted">—</td>
+          <td class="muted posrel"><span class="marker-between">42K</span></td>
+          <td class="posrel">21K<span class="marker-between">10K</span></td>
+          <td class="posrel">5K<span class="marker-between">3K</span></td>
+          <td class="muted posrel"></td>
+        </tr>
+        <tr>
+          <th>My pace</th>
+          <td class="muted">—</td>
+          <td>6:00–6:20/km</td>
+          <td>5:10–5:30/km</td>
+          <td>4:30–4:50/km</td>
+          <td>4:00–4:30/km</td>
+        </tr>
+      </table>
     </div>
   </div>
 </section>
